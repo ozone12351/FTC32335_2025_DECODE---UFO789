@@ -134,8 +134,6 @@ public class TurretController {
                 MOTOR.setPower(0);
             }
 
-
-
             telemetry.addData("encoder position: ", currentMotorPosition);
             telemetry.addData("motor power: ", MOTOR.getPower());
 
