@@ -8,6 +8,8 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Config;
+import org.firstinspires.ftc.teamcode.RobotClasses.VisionProcessing.VisionProcessing;
+import org.firstinspires.ftc.vision.VisionPortal;
 
 public class TurretController {
 
@@ -95,7 +97,7 @@ public class TurretController {
 
         updateControls(gamepad, range);
 
-        if (xyhv != null) {  //trun to lock on the target
+        if (xyhv != null) {  //turn to lock on the target
             telemetry.addData("x    :   ", xyhv[0]);
             telemetry.addData("y    :   ", xyhv[1]);
             telemetry.addData("r    :   ", xyhv[4]);
