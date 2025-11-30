@@ -54,7 +54,7 @@ public class VisionProcessing {
     @SuppressLint("DefaultLocale")
     public void displayDetectionTelemetry(AprilTagDetection detectionId) {
 
-        visionPortal.getCameraControl()
+//        visionPortal.getCameraControl();
         if (detectionId == null) {return;}
 
         if (detectionId.metadata != null) {

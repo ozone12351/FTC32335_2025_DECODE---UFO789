@@ -74,7 +74,7 @@ public class TurretController {
 
         if (gamepad.x) {
             if (!state) {
-                shootingMotorSpeed = 1.0;
+                shootingMotorSpeed = -1.0;
                 state = true;
             } else {
                 shootingMotorSpeed = 0.0;
