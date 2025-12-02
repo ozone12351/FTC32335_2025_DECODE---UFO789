@@ -8,8 +8,6 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Config;
-import org.firstinspires.ftc.teamcode.RobotClasses.VisionProcessing.VisionProcessing;
-import org.firstinspires.ftc.vision.VisionPortal;
 
 public class TurretController {
 
@@ -19,8 +17,6 @@ public class TurretController {
     AngleAdjustServo angleAdjustServo;
     Servo shootingServo;
     ElapsedTime timer = new ElapsedTime();
-
-    int count = 0;
 
     double swingPower = 0.5;
     double shootingMotorSpeed = 0.0;
@@ -74,7 +70,7 @@ public class TurretController {
 
         if (gamepad.x) {
             if (!state) {
-                shootingMotorSpeed = -1.0;
+                shootingMotorSpeed = 1.0;
                 state = true;
             } else {
                 shootingMotorSpeed = 0.0;
@@ -97,7 +93,7 @@ public class TurretController {
 
         updateControls(gamepad, range);
 
-        if (xyhv != null) {  //turn to lock on the target
+        if (xyhv != null) {
             telemetry.addData("x    :   ", xyhv[0]);
             telemetry.addData("y    :   ", xyhv[1]);
             telemetry.addData("r    :   ", xyhv[4]);
@@ -114,26 +110,16 @@ public class TurretController {
                 telemetry.addLine("-1");
                 MOTOR.setPower(-calculateSpeed(xyhv));
             }
-
-            // add launch autories on screen
         }
         else {
-
-            telemetry.addLine("No tag detected"); //no detection
+            telemetry.addLine("No tag detected");
             int currentMotorPosition = MOTOR.getCurrentPosition();
 
-            if (currentMotorPosition >= 1400 || currentMotorPosition <= -1400){
-                count++;
-            }
-
-            if (currentMotorPosition <= 1400 && count % 2 == 0) { //turn on the min side
+            if (currentMotorPosition >= 100) {
                 MOTOR.setPower(0.5);
             }
-            else if (currentMotorPosition >= -1400 && count % 2 != 0){ //turn on the max side
+            else {
                 MOTOR.setPower(-0.5);
-            }
-            else{
-                MOTOR.setPower(0);
             }
 
             telemetry.addData("encoder position: ", currentMotorPosition);
